@@ -160,12 +160,18 @@
         echo "<span class='sensorvaluedec'>.-</span>"; 
     } else {
         #echo "#$SENSOR_VALUE#";
-        echo "<span class='sensorvalue'>"; 
+        echo "<br><span class='sensorvaluedec'>C"; 
         echo explode( ".", number_format($SENSOR_VALUE, 1, '.', ''))[0];
         echo "</span>";
         echo "<span class='sensorvaluedec'>."; 
         echo explode( ".", number_format($SENSOR_VALUE, 1, '.', ''))[1];
         echo "</span>";
+        echo "<br><span class='sensorvaluedec'>F"; 
+        echo explode( ".", number_format($SENSOR_VALUE*9/5+32, 1, '.', ''))[0];
+        echo "</span>";
+        echo "<span class='sensorvaluedec'>."; 
+        echo explode( ".", number_format($SENSOR_VALUE*9/5+32, 1, '.', ''))[1];
+        echo "</span>";        
     }
     echo "</td>";
 
