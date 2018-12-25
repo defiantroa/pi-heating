@@ -24,6 +24,9 @@ if ( $SENSOR_ID < 1 ) {
     do {
       $raw_data = file_get_contents($w1dir.$ref.'/w1_slave');
       $success = substr( explode( "\n", $raw_data )[0], -3, 3 );
+      if ( $success !="YES" ) {
+          sleep(60);
+      }
     } while ( $success !="YES" ); 
  
     $value = (float)(explode( "=", explode( " ", explode( "\n", $raw_data )[1] )[9] )[1])/1000.0;
