@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS sensors   (      id            bigint(11)    NOT NULL
                                             name          varchar(256)  DEFAULT NULL,
                                             ip            varchar(16)   DEFAULT NULL,
                                             value         float         DEFAULT NULL,
-                                            unit          varchar(11)   NOT NULL );
+                                            unit          varchar(11)   NOT NULL,
+                                            offset        float         DEFAULT 0.0);
 
 CREATE TABLE IF NOT EXISTS timers    (      id            int(11)       NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                             name          varchar(256)  DEFAULT NULL,
