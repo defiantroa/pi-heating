@@ -114,6 +114,16 @@
 	font-family: arial;
 	margin: 12px;
 }
+	
+.itextboxsub { 
+	font-family: arial; 
+	color: grey; 
+	font-size: 11pt; 
+	padding: 4px; 
+	margin: 0px; 
+	display: block; 
+	width:  90%; 
+}
 
 table, th, td {
 	border: 5px solid #080808;
@@ -222,6 +232,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         mysqli_close($conn);
     }
+	
+    if (array_key_exists("update", $_POST)) {
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (! $conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $SENSOR_ID = $_POST["sensor_id"];
+	$SENSOR_OFFSET = $_POST["sensor_offset"];
+        
+        // echo $SCHED_ID;
+        
+        
+        $sql = "UPDATE sensors SET offset='" . $SENSOR_OFFSET ." WHERE id='" . $SENSOR_ID . "';";
+        if (! mysqli_query($conn, $sql)) {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+        
+        mysqli_close($conn);
+    }	
+	
 }
 // /////////////////////////////////////////////////////////
 
@@ -269,7 +303,13 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td class='dcolname'><span class='dspan'>$SENSOR_NAME</span></td>";
         
         echo "<td class='dcolstatus'><span class='dspan'>$SENSOR_VALUE $SENSOR_UNIT</span></td>";
-        echo "<td class='dcolstatus'><span class='dspan'>$SENSOR_OFFSET</span></td>";
+        echo "<td class='dcolstatus'>";
+	echo "<form method='post' action='sensors-list.php'>";
+	echo "<input type='text' name='sensor_offset' value='$SENSOR_OFFSET' class='itextboxsub'>";
+        echo "<input type='hidden' name='sensor_id' value='" . $SENSOR_ID . "'>";
+        echo "<input type='submit' name='update' value='Update' class='bblue' /></form>";
+	   	    
+	echo "</td>";
         
         echo "<td class='dcolstatus'>";
         $span = "-24h";
