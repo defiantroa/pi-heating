@@ -244,6 +244,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='tcol' width=1%><span class='tspan'>IP</span></th>";
     echo "<th class='tcol'><span class='tspan'>Name</span></th>";
     echo "<th class='tcol' width=auto><span class='tspan'>Value</span></th>";
+    echo "<th class='tcol' width=auto><span class='tspan'>OFfset</span></th>";	
     echo "<th class='tcol' width=1%><span class='tspan'>History</span></th>";
     echo "<th class='tcol' width=1%></th></tr>";
     
@@ -257,6 +258,7 @@ if (mysqli_num_rows($result) > 0) {
         $SENSOR_NAME = $row["name"];
         $SENSOR_VALUE = $row["value"];
         $SENSOR_UNIT = $row["unit"];
+	$SENSOR_OFFSET = $row["offset"];
         
         $img_dir = 'images/chart-sensor-';
         $rrd_dir = '/home/pi/pi-heating-hub/data/s-';
@@ -267,6 +269,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td class='dcolname'><span class='dspan'>$SENSOR_NAME</span></td>";
         
         echo "<td class='dcolstatus'><span class='dspan'>$SENSOR_VALUE $SENSOR_UNIT</span></td>";
+        echo "<td class='dcolstatus'><span class='dspan'>$SENSOR_OFFSET</span></td>";
         
         echo "<td class='dcolstatus'>";
         $span = "-24h";
