@@ -23,7 +23,7 @@ t = datetime.datetime.now().strftime('%s')
 cnx = MySQLdb.connect(host=servername, user=username, passwd=password, db=dbname)
 cnx.autocommit(True)
 cursorread = cnx.cursor()
-query = ("SELECT id, ref, ip FROM sensors")
+query = ("SELECT id, ref, ip, IFNULL(offset,0) FROM sensors")
 cursorread.execute(query)
 results =cursorread.fetchall()
 cursorread.close()
@@ -33,6 +33,7 @@ for i in results:
   sensor_id = i[0]
   sensor_ref = i[1]
   sensor_ip = i[2]
+  sensor_offset = i[3]
   
     
   sensor_url = "http://"+sensor_ip+":8081/value.php?id="+sensor_ref
@@ -40,7 +41,7 @@ for i in results:
   print sensor_url
   
   try:
-    data = float( urllib2.urlopen(sensor_url).read() )  
+    data = float( urllib2.urlopen(sensor_url).read() ) + sensor_offset
   except:
     data = 'NULL'
     
