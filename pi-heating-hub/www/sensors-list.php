@@ -278,7 +278,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<th class='tcol' width=1%><span class='tspan'>IP</span></th>";
     echo "<th class='tcol'><span class='tspan'>Name</span></th>";
     echo "<th class='tcol' width=auto><span class='tspan'>Value</span></th>";
-    echo "<th class='tcol' width=auto><span class='tspan'>OFfset</span></th>";	
+    echo "<th class='tcol' width=auto><span class='tspan'>Offset</span></th>";	
     echo "<th class='tcol' width=1%><span class='tspan'>History</span></th>";
     echo "<th class='tcol' width=1%></th></tr>";
     
