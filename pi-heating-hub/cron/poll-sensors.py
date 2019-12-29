@@ -41,7 +41,8 @@ for i in results:
   print sensor_url
   
   try:
-    data = float( urllib2.urlopen(sensor_url).read() ) + sensor_offset
+    data = float( urllib2.urlopen(sensor_url, timeout=2).read() )
+    data = data + sensor_offset
   except:
     data = 'NULL'
     
