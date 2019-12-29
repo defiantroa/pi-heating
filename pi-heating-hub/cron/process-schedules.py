@@ -113,8 +113,8 @@ for result in results_schedules:
     if ( result[4] != None ):
     
       SENSOR_VALUE= float(result[4])
-      SENSOR_TEST = str(result[9])
-      TEST_VALUE = float(result[10])
+      SENSOR_TEST = str(result[10])
+      TEST_VALUE = float(result[11])
 
       if (  SENSOR_TEST == '<' and SENSOR_VALUE < TEST_VALUE ):
         TEST = True
